@@ -5,6 +5,7 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+from Ext_Law import extinction_law_indeb, extinction_law_ccm_ak
 
 data_1e8 = np.loadtxt("data\Isochrone_data_1e8.dat")
 data_1e9 = np.loadtxt("data\Isochrone_data_1e9.dat")
@@ -33,4 +34,17 @@ plt.ylim(max(k_band_1), min(k_band_1))
 plt.plot(j_h_2, k_band_2, label = 'age = 1e9')
 plt.xlabel('Color Excess (J-H)')
 plt.ylabel('K band Magnitude (Mk)')
+plt.title('Isochrones of Different Length')
 plt.legend()
+
+plt.figure()
+plt.plot(j_h_1, k_band_1, label = 'age = 1e8')
+plt.ylim(max(k_band_1), min(k_band_1))
+plt.xlabel('Color Excess (J-H)')
+plt.ylabel('K band Magnitude (Mk)')
+plt.title('Effect of Extinction on Isochrone')
+plt.legend()
+
+m = 1/(extinction_law_indeb(1.235) - extinction_law_indeb(1.662))
+plt.annotate("", xy=(m/4 - 0.07, 1/4 - 0.5), xytext=(-0.07, -0.5), 
+            arrowprops=dict(arrowstyle="->"))

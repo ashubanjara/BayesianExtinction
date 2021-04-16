@@ -57,32 +57,33 @@ remove_flags(h_band, j_band, k_band, rd_flg, bl_flg, cc_flg, '0')
 j_k = cleaned_j - cleaned_k
 j_h = cleaned_j - cleaned_h
 
-plt.scatter(j_k, j_h, marker = ".")
-plt.title('Color Excess with Extinction Vector (Indebetow)')
-plt.xlabel('j - k')
-plt.ylabel('j - h')
+if __name__ == '__main__':
+    plt.scatter(j_k, j_h, marker = ".")
+    plt.title('Color Excess with Extinction Vector (Indebetow)')
+    plt.xlabel('j - k')
+    plt.ylabel('j - h')
 
-m = extinction_law_indeb(1.25) - 1
+    m = extinction_law_indeb(1.25) - 1
 
-plt.arrow(0, 0.5, 1/2, m/2, head_width = 0.05, head_length = 0.1, 
-          label='Extinction Vector')
+    plt.arrow(0, 0.5, 1/2, m/2, head_width = 0.05, head_length = 0.1, 
+              label='Extinction Vector')
 
-vector_length = np.sqrt(0.5**2 + (m/2)**2)
+    vector_length = np.sqrt(0.5**2 + (m/2)**2)
 
-plt.figure()
+    plt.figure()
 
-plt.scatter(j_k, j_h, marker = ".")
-plt.title('Color Excess with Extinction Vector (CCM)')
-plt.xlabel('j - k')
-plt.ylabel('j - h')
-m = extinction_law_ccm_ak(1.25) - 1
+    plt.scatter(j_k, j_h, marker = ".")
+    plt.title('Color Excess with Extinction Vector (CCM)')
+    plt.xlabel('j - k')
+    plt.ylabel('j - h')
+    m = extinction_law_ccm_ak(1.25) - 1
 
-plt.arrow(0, 0.5, 1/2, m/2, head_width = 0.05, head_length = 0.1, 
-          label='Extinction Vector')
+    plt.arrow(0, 0.5, 1/2, m/2, head_width = 0.05, head_length = 0.1, 
+              label='Extinction Vector')
 
-plt.figure()
-plt.scatter(j_k, cleaned_k, marker = ".")
-plt.title('Color Magnitude')
-plt.xlabel('j - k')
-plt.ylabel('k')
-plt.ylim(max(k_band), min(k_band))
+    plt.figure()
+    plt.scatter(j_k, cleaned_k, marker = ".")
+    plt.title('Color Magnitude')
+    plt.xlabel('j - k')
+    plt.ylabel('k')
+    plt.ylim(max(k_band), min(k_band))

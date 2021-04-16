@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import pymc3.distributions.continuous as cont
 import pymc3.distributions.discrete as disc
 from Ext_Law import extinction_law_ccm_ak
+import arviz as az
+import theano
 
 
 """
@@ -33,10 +35,10 @@ def mu(abs_mag, distance, extinction):
 """
 
 def mu_j(st_index, distance, extinction):
-    return stellar_type + 5*np.log(distance/10) + extinction
+    return Mj[st_index] + 5*np.log(distance/10) + extinction
 
 def mu_h(st_index, distance, extinction):
-    return stellar_type + 5*np.log(distance/10) + extinction
+    return Mh[st_index] + 5*np.log(distance/10) + extinction
 
 def mu_k(st_index, distance, extinction):
     return Mk[st_index] + 5*np.log(distance/10) + extinction
@@ -86,7 +88,7 @@ print("Age = " + str(ST_k[2]))
 if __name__ == '__main__':
     
     # Define extinction model
-    ext_model = pm.Model()
+    ext_model = pm.Model(check_bounds=True)
     
     # Model parameters
     with ext_model:
@@ -95,8 +97,8 @@ if __name__ == '__main__':
         # abs_mag = cont.Uniform("absolute magnitude", lower=-10, upper=10)
         distance = cont.Uniform("distance", lower=0.1, upper=32408)
         extinction = cont.Uniform("extinction", lower = 0, upper=10) 
-        stellar_type_index = disc.DiscreteUniform("st_index", lower = 0, 
-                                          upper = len(Mk) - 1)
+        stellar_type_index = disc.DiscreteUniform("st_index", lower = 1, 
+                                          upper = len(Mk) - 350)
     
 
         # Likelihood (how to combine j, h and k?)
@@ -115,9 +117,15 @@ if __name__ == '__main__':
         """
         
         # Using sequential monte carlo, function to be used and its parameters
-        sim_k = pm.Simulator("sim", mu_k, 
+        sim_k = pm.Simulator("sim_k", mu_k, 
+                             params = (stellar_type_index, distance, extinction),
+                             observed = np.array(Vega_data[0]))
+        sim_j = pm.Simulator("sim_j", mu_j, 
                            params = (stellar_type_index, distance, extinction),
-                           observed = np.array(Vega_data[0]))
+                           observed = np.array(Vega_data[1]))
+        sim_h = pm.Simulator("sim_h", mu_h, 
+                           params = (stellar_type_index, distance, extinction),
+                           observed = np.array(Vega_data[2]))
         
         # Run the MCMC Algorithm
         """
@@ -126,8 +134,10 @@ if __name__ == '__main__':
         pm.plot_posterior(trace, var_names = ["distance"])
         """
         
-        trace_lv = pm.sample_smc(kernel="ABC", parallel=True)
+        trace_lv = pm.sample_smc(kernel="ABC")
+        idata_lv = az.from_pymc3(trace_lv)
         
+    az.plot_trace(idata_lv, kind="rank_vlines");
     """
     print("Mean distance to Vega = " + 
           str(np.round(trace["distance"].mean(), 3)) + " pc")

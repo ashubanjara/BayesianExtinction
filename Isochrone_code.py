@@ -34,7 +34,7 @@ plt.ylim(max(k_band_1), min(k_band_1))
 plt.plot(j_h_2, k_band_2, label = 'age = 1e9')
 plt.xlabel('Color Excess (J-H)')
 plt.ylabel('K band Magnitude (Mk)')
-plt.title('Isochrones of Different Length')
+plt.title('Isochrones of Different Ages')
 plt.legend()
 
 plt.figure()

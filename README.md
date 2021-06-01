@@ -5,3 +5,5 @@ Uses Markov Chain Monte Carlo (MCMC) and No-U-Turn Sampler (NUTS) to solve for t
 Required Python Modules: Numpy, Arviz, Theano, Pymc3, Astropy
 
 Required Project Files (should be in the same directory): Ext_Law.py, TwoMA_flag_code.py, Isochrone_code.py 
+
+![Image of Model Diagram](https://github.com/ashubanjara/BayesianExtinction/blob/main/Model_Diagram_2.PNG)

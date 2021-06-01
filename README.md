@@ -7,3 +7,6 @@ Required Python Modules: Numpy, Arviz, Theano, Pymc3, Astropy
 Required Project Files (should be in the same directory): Ext_Law.py, TwoMA_flag_code.py, Isochrone_code.py 
 
 ![Image of Model Diagram](https://github.com/ashubanjara/BayesianExtinction/blob/main/Model_Diagram_2.PNG)
+
+The Bayesian Model representation can be seen in the image above. The methodologies and details behind this
+project can be found in my reseach paper (https://drive.google.com/file/d/10CjTqYPaH3erd1YfR3MEDGbLUEmwtPCx/view?usp=sharing)

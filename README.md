@@ -13,4 +13,4 @@ How to Run Model:
 ![Image of Model Diagram](https://github.com/ashubanjara/BayesianExtinction/blob/main/Model_Diagram_2.PNG)
 
 The Bayesian Model representation can be seen in the image above. The methodologies and details behind this
-project can be found in my reseach paper (https://drive.google.com/file/d/10CjTqYPaH3erd1YfR3MEDGbLUEmwtPCx/view?usp=sharing)
+project can be found in my reseach paper: (https://drive.google.com/file/d/10CjTqYPaH3erd1YfR3MEDGbLUEmwtPCx/view?usp=sharing)

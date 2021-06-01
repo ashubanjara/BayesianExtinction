@@ -8,7 +8,7 @@ How to Run Model:
 1. Get the prerequisite python modules (can be done easily through anaconda)
 2. Run final_model.py (feel free to change model parameters)
 3. The Posteriors will be displayed in console
-4. These files/folders should be in the same directory: Ext_Law.py, TwoMA_flag_code.py, Isochrone_code.py, data folder
+4. These folders/files should be in the same directory: Data folder, Ext_Law.py, TwoMA_flag_code.py, Isochrone_code.py
 
 ![Image of Model Diagram](https://github.com/ashubanjara/BayesianExtinction/blob/main/Model_Diagram_2.PNG)
 
